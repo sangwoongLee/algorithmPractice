@@ -11,20 +11,19 @@ class Solution {
             this.price = price;
         }
     }
+    
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
         Stack<Data> stack = new Stack();
 
         int now = 0;
 
-
         for(int price: prices){
-
             while(!stack.isEmpty() && price < stack.peek().price){
                 int current = stack.pop().time;
                 answer[current] = now - current;
             }
-
+            
             stack.push(new Data(now, price));
             now++;
         }
